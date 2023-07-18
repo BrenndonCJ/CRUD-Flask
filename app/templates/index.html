@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 class="mt-4">Lista de Produtos</h1>
+    <ul class="list-group">
+        {% for produto in produtos %}
+            <li class="list-group-item">{{ produto.titulo }} - {{ produto.quantidade }}
+                <form method="POST" action="{{ url_for('delete', produto_id=produto.id) }}" class="d-inline">
+                    <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                </form>
+                <a href="{{ url_for('update', produto_id=produto.id) }}" class="btn btn-primary btn-sm">Editar</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('create') }}" class="btn btn-success mt-3">Novo Produto</a>
+{% endblock %}
